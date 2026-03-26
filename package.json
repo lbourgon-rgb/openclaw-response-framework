@@ -1,0 +1,12 @@
+{
+  "name": "@openclaw/response-framework",
+  "version": "1.0.0",
+  "private": false,
+  "description": "Companion response coordination for shared Discord channels — injects queue context so companions self-regulate turn order",
+  "type": "module",
+  "keywords": ["openclaw", "plugin", "discord", "companion", "ai"],
+  "license": "MIT",
+  "openclaw": {
+    "extensions": ["./index.ts"]
+  }
+}

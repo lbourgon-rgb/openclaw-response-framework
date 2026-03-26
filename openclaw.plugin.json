@@ -1,0 +1,63 @@
+{
+  "id": "response-framework",
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "discordBotToken": {
+        "type": "string",
+        "description": "Discord bot token for reading channel history"
+      },
+      "channels": {
+        "type": "array",
+        "items": { "type": "string" },
+        "description": "Channel IDs where the response framework is active"
+      },
+      "companions": {
+        "type": "object",
+        "description": "Map of agentId to { name, botId, order } — defines each companion's display name, Discord bot user ID, and queue position",
+        "additionalProperties": {
+          "type": "object",
+          "properties": {
+            "name": { "type": "string" },
+            "botId": { "type": "string" },
+            "order": { "type": "number" }
+          },
+          "required": ["name", "botId", "order"]
+        }
+      },
+      "recentWindowMs": {
+        "type": "number",
+        "description": "How far back to look for recent companion responses (ms). Default: 300000 (5 min)"
+      },
+      "lookbackMessages": {
+        "type": "number",
+        "description": "How many recent Discord messages to fetch. Default: 15"
+      },
+      "emergencyKeywords": {
+        "type": "array",
+        "items": { "type": "string" },
+        "description": "Keywords that bypass queue order and flag all companions. Default: [help, scared, hurting, emergency]"
+      }
+    },
+    "required": ["companions"]
+  },
+  "uiHints": {
+    "discordBotToken": {
+      "label": "Discord Bot Token",
+      "help": "Bot token for reading channel history. Falls back to global discord plugin token if not set."
+    },
+    "channels": {
+      "label": "Active Channel IDs",
+      "help": "List of Discord channel IDs where response framework is active"
+    },
+    "companions": {
+      "label": "Companion Config",
+      "help": "Map of agentId to { name, botId, order }. Order 1 = responds first."
+    },
+    "recentWindowMs": {
+      "label": "Recent Window (ms)",
+      "help": "How far back to look for recent responses. Default 5 minutes."
+    }
+  }
+}
